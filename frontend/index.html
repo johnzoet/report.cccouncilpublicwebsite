@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="Cumberland City Council">
+    <meta name="generator" content="Hugo 0.80.0">
+    
+    <title>Community Traffic Issue Reporter</title>
+    
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css">
+    
+    <!-- Custom styles for this template -->
+    <link rel="stylesheet" type="text/css" href="css/styles.css" />
+    
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="favicon.ico">
+    
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"></script>
+    
+</head>
+<body>
+
+    <header class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-body border-bottom shadow-sm">
+        <p class="h5 my-0 me-md-auto fw-normal"><a href="./index.html"><img src="img/logo.png" width="150" height="50" alt=""></a></p>
+        <nav class="my-2 my-md-0 me-md-3">
+            <a href="https://cccouncilpublicwebsite.tk" class="btn btn-success" role="button">Cumberland Council</a>    
+        </nav>
+        <nav class="my-2 my-md-0 me-md-3">
+            <a href="https://dashboard.cccouncilpublicwebsite.tk" class="btn btn-primary" tabindex="-1" role="button" aria-disabled="false">Safety Dashboard</a>    
+        </nav>        
+        <a class="btn btn-secondary disabled" aria-disabled="true" href="#">Issue Reporter</a>
+    </header>
+    
+    <main class="container">
+        <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+            <h1 class="display-4">Community Traffic Issue Reporter</h1>
+            <p class="lead">Report Traffic Safety issues within the Cumberland city area</p>
+        </div>
+        <div class="row row-cols-1 row-cols-md-1 mb-3 text-center">
+            <div class="col">
+                <div class="card mb-4 shadow-sm">
+                    <div class="card-header">
+                        <h4 class="my-0 fw-normal">Report Traffic Issue</h4>
+                    </div>
+                    <div class="card-body" id="cardShowHideEmergencyLights">
+                        <img src="img/emergency.png" width="50" height="50" alt="Report Traffic Issue" style="margin-top: 10px">
+                        <img src="img/emergency.png" width="50" height="50" alt="Report Traffic Issue" style="margin-top: 10px"> 
+                        <img src="img/emergency.png" width="50" height="50" alt="Report Traffic Issue" style="margin-top: 10px">                                               
+                    </div>
+                    <div>
+                        <div class="col-md-5 mx-auto">
+                            <div class="card-body" id="cardShowHideOKGreenTick" style="display: none; margin-bottom: 30px; margin-top: 40px;">
+                                <img src="img/greentick.png" width="50px" height="50px" alt="Report Submitted">
+                                <h1 class="text-success">Traffic Issue Reported</h1>
+                                <div class="card-text" style="margin-bottom: 10px; margin-top: 20px;">
+                                    <button type="button" class="btn btn-danger btn-lg" onclick="refreshPage(event);">Report Another Issue</button>
+                                </div>                                
+                            </div>
+                            <div class="card-body" id="cardShowHideErrorRedX" style="display: none; margin-bottom: 30px; margin-top: 40px;">
+                                <img src="img/redx.png" width="50px" height="50px" alt="Report Submitted">
+                                <h1 class="text-danger">Error Reporting Traffic Issue</h1>
+                                <div class="card-text" style="margin-bottom: 10px; margin-top: 20px;">
+                                    <button type="button" class="btn btn-danger btn-lg" onclick="refreshPage(event);">Try Again</button>
+                                </div>                                
+                            </div>                            
+                            <div class="card-body" id="cardShowHideSpinner" style="display: none; margin-bottom: 30px; margin-top: 30px;">
+                                <div class="align-items-center text-success">
+                                    <div style="padding-bottom: 10px;"><strong>Reporting Issue, Please Wait...</strong></div>
+                                    <div class="spinner-border ml-autox" style="width: 5rem; height: 5rem;" role="status" aria-hidden="true"></div>
+                                </div>
+                            </div>
+                            <div class="card-body" id="cardShowHideSubmitForm">
+                                <p class="login-card-description">Sign into your account</p>
+                                <form id="reportForm" action="#">
+                                    <div class="form-group" style="margin-bottom: 10px;">
+                                        <label for="email" class="sr-only">Email</label>
+                                        <input type="email" name="email" id="email" class="form-control" placeholder="Email address" style="margin: 10px">
+                                    </div>
+                                    <div class="form-group mb-4">
+                                        <label for="issue" class="sr-only">Issue</label>
+                                        <textarea rows="4" name="issue" required id="issue" class="form-control" placeholder="Enter Issue Details..." 
+                                        style="margin: 10px"></textarea>
+                                        <div class="invalid-feedback">
+                                            Please enter a message in the textarea.
+                                        </div>
+                                    </div>
+                                    <div class="card-text" style="margin-bottom: 10px;">
+                                        <button type="button" class="btn btn-danger btn-lg" onclick="handleFormSubmit(event);">Report Issue</button>
+                                    </div>                           
+                                </form>
+                                </div>
+                            </div>                        
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <footer>
+                <div class="row">
+                    <div class="col-12 col-md">
+                        <p class="text-center">Copyright &copy;</span><script>document.write(new Date().getFullYear());</script> All rights reserved</p>
+                    </div>
+                    <div>
+                        <h4>&nbsp;</h4>
+                    </div>                
+                </div>
+            </footer>
+        </main>
+        <script src="js/app.js"></script>
+    </body>
+    </html>
+    

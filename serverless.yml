@@ -1,0 +1,81 @@
+# serverless.yml
+# report.cccouncilpublicwebsite.tk
+
+service: report
+app: cccouncil
+org: srvlessfwrk
+
+frameworkVersion: '2'
+
+provider:
+  name: aws
+  runtime: python3.7
+  stage: dev
+  region: ap-southeast-2
+
+  lambdaHashingVersion: 20201221
+  apiGateway:
+    shouldStartNameWithService: true
+    binaryMediaTypes:
+      - 'multipart/form-data'
+
+  iam:
+    role:
+      statements:
+        - Effect: Allow
+          Action:
+            - dynamodb:PutItem
+            - dynamodb:UpdateItem
+          Resource: "arn:aws:dynamodb:*:*:table/${self:provider.environment.DYNAMODB_TABLE}"
+
+  environment:
+    DYNAMODB_TABLE: trafficReportsTable
+
+resources:
+  Resources:
+    trafficReportsTable:
+      Type: 'AWS::DynamoDB::Table'
+      Properties:
+        TableName: ${self:provider.environment.DYNAMODB_TABLE}
+        AttributeDefinitions:
+          - AttributeName: reporterEmail
+            AttributeType: S
+        KeySchema:
+          - AttributeName: reporterEmail
+            KeyType: HASH
+        ProvisionedThroughput:
+          ReadCapacityUnits: 1
+          WriteCapacityUnits: 1
+
+functions:
+  sendTrafficReport:
+    handler: backend/send_report.handler
+    events:
+      - http:
+          path: report
+          method: post
+          cors: true
+
+custom:
+  client:
+    bucketName: report.cccouncilpublicwebsite.tk
+    distributionFolder: frontend
+    indexDocument: index.html
+    errorDocument: error.html
+
+plugins:
+  - serverless-finch
+
+package:
+  exclude:
+    - node_modules/**
+    - backend/frontend/**
+    - backend/venv/**
+    - backend/.vscode/**
+    - backend/__pycache__/**
+    - backend/.dynamodb/**
+    - ops/**    
+    - .serverless/**
+    - package-lock.json
+    - .DS_Store
+    - frontend/.DS_Store
