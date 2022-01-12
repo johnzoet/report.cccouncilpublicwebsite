@@ -3,7 +3,7 @@
 
 service: report
 app: cccouncil
-org: srvlessfwrk
+org: johnzoet
 
 frameworkVersion: '2'
 
@@ -58,7 +58,7 @@ functions:
 
 custom:
   client:
-    bucketName: report.cccouncilpublicwebsite.tk
+    bucketName: report.cccouncilpublicwebsite.aws.zoetebier.net
     distributionFolder: frontend
     indexDocument: index.html
     errorDocument: error.html
