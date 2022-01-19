@@ -14,7 +14,7 @@
   "author": "",
   "license": "ISC",
   "homepage": "https://bitbucket.org/zosdev/dashboard#readme",
-  "dependencies": {
-    "serverless-finch": "^2.6.0"
+  "devDependencies": {
+    "serverless-finch": "^2.8.0"
   }
 }

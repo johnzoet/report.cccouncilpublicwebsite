@@ -65,7 +65,6 @@ custom:
 
 plugins:
   - serverless-finch
-
 package:
   exclude:
     - node_modules/**
