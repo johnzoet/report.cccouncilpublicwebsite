@@ -1,6 +1,6 @@
 # serverless.yml
 # report.cccouncilpublicwebsite.tk
-# Test serverless CI/CD deployent trigger
+# Test serverless CI/CD deployent trigger: 2
 
 service: report
 app: cccouncil
