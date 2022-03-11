@@ -5,7 +5,7 @@ service: report
 app: cccouncil
 org: johnzoet
 
-frameworkVersion: '2'
+frameworkVersion: '3'
 
 provider:
   name: aws
